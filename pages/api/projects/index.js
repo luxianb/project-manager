@@ -1,7 +1,7 @@
 import dbConnect from "../../../lib/dbConnect";
 import Project from '../../../models/Project';
 
-export default async function handler (res, req) {
+export default async function handler(req, res) {
   const {method} = req;
 
   await dbConnect()
