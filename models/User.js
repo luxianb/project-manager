@@ -1,8 +1,8 @@
-import { model, Schema } from 'mongoose';
+import mongoose, { model, Schema } from 'mongoose';
 
 const UserSchema = new Schema({
-  email: {type: String, required, unique},
-  password: {type: String, required},
+  email: {type: String, required: true, unique: true},
+  password: {type: String, required: true},
 })
 
-module.exports = model('User', UserSchema);
+module.exports = mongoose.models.User || model('User', UserSchema);
