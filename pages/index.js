@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
-import {useUser} from '../lib/hooks'
+import useUser from '../lib/useUser'
 import Navbar from '../src/layouts/Navbar'
 import styles from '../styles/Home.module.css'
 import { ProjectCard } from '../src/components/cards';
@@ -16,7 +16,6 @@ export default function Home() {
     setProjects(await fetchProjects());
   }, [])
 
-  console.log(JSON.stringify(user, null, 2))
 
   return (
     <div>

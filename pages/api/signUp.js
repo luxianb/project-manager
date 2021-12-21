@@ -2,12 +2,10 @@ import {hash, genSalt} from 'bcrypt';
 import dbConnect from "../../../lib/dbConnect";
 import User from '../../../models/User';
 
-export default async function handler (res, req) {
-  const {method} = req;
-
+export default async function handler(res, req) {
   await dbConnect()
 
-  switch(method) {
+  switch(req.method) {
     case 'POST':
       try {
         req.body.password = await hash(req.body.password, genSalt(10));
