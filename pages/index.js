@@ -4,16 +4,26 @@ import Image from 'next/image'
 import useUser from '../lib/useUser'
 import Navbar from '../src/layouts/Navbar'
 import styles from '../styles/Home.module.css'
-import { ProjectCard } from '../src/components/cards';
-import { fetchProjects } from '../src/util/apiFunctions';
+import { CreateProjectButton, ProjectCard } from '../src/components/cards';
+import axios from 'axios';
+import CreateProjectModal from '../src/components/modals/CreateProjectModal';
+import { ProjectContainer } from '../src/components/containers';
 
 
 export default function Home() {
-  const user = useUser()
   const [projects, setProjects] = useState([]);
+  const [displayModal, setDisplayModal] = useState('')
+  const user = useUser()
 
   useEffect(async () => {
-    setProjects(await fetchProjects());
+    async function fetchProjects() {
+      try {
+        const res = await axios.get('/api/projects');
+        console.log(res.data.data)
+        setProjects(res.data.data)
+      } catch (error) {console.log(error)}
+    }
+    fetchProjects()
   }, [])
 
 
@@ -26,30 +36,34 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      <main className={styles.main}>
-        {projects?.map((project, index) => (
-          
-            <ProjectCard 
-              key={project.id} 
-              title={project.name}
-              {...project}
-            />
-  
-        ))}        
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <ProjectContainer>
+
+        <CreateProjectButton onClick={() => setDisplayModal('createProject')} />
+        {projects?.map((project, index) => (
+          <ProjectCard 
+          key={project._id} 
+          title={project.name}
+          {...project}
+          />
+          ))}   
+        </ProjectContainer>
+
+      {displayModal && (
+        <>
+          {displayModal === 'createProject' && (
+            <>
+              <CreateProjectModal
+                closeModal={() => setDisplayModal('')}
+                onProjectCreated={(newProject) => {
+                  setProjects([...projects, newProject]);
+                  setDisplayModal('');
+                }}
+              />
+            </>
+          )}
+        </>
+      )}
     </div>
   )
 }

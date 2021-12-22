@@ -1,5 +1,6 @@
 import dbConnect from "../../../lib/dbConnect";
 import Project from '../../../models/Project';
+import { fetchProjectInfo } from "../../../src/util/apiFunctions";
 
 export default async function handler (req, res) {
   const {method, query} = req;
@@ -10,11 +11,15 @@ export default async function handler (req, res) {
     case 'GET':
       try {
         const project = await Project.findOne({slug: query.projectName})
+        // console.log(project);
+        const projectInfo = await fetchProjectInfo(project.trelloId);
+        // console.log(projectInfo);
 
-        return res.status(200).json({success: true, data: project})
+        return res.status(200).json({success: true, data: projectInfo})
       } catch (error) {
         return res.status(400).json({success: false})
       }
+
     case 'PUT':
       try {
         const updatedProject = await Project.findOneAndUpdate(
