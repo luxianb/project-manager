@@ -13,6 +13,16 @@ export async function fetchProjects() {
   } catch (error) {console.log(error)}
 }
 
+export async function createTrelloBoard(name) {
+  try {
+    const res = await axios.post(`${base_url}/1/boards/?${trello_key}&${trello_token}&name=${name}&idOrganization=hendricksprojectmanager&idBoardSource=61c1f397a12991586b72af85`)
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function fetchProjectInfo(project_id) {
   try {
     const res = await axios.get(`${base_url}/1/boards/${project_id}?${trello_key}&${trello_token}&cards=visible&lists=open`)
@@ -42,6 +52,25 @@ export async function createCard(body) {
 
   } catch (error) {console.log(error)}
 }
+
+export async function updateCard(id, body) {
+  try {
+    let requestParams = '';
+    for (const field in body) {
+      if (body[field]) {
+        if (requestParams.length > 0) {
+          requestParams += "&";
+        };
+        requestParams += `${field}=${body[field]}`
+      }
+    }
+    console.log(requestParams)
+    const res = await axios.put(`${base_url}/1/card/${id}?${trello_key}&${trello_token}&${requestParams}`);
+    // console.log(res.data);
+    return res.data;
+
+  } catch (error) { console.log(error); }
+};
 
 export async function changeCardStatus(id, idList) {
   try {
