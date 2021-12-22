@@ -1,14 +1,30 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { Col, Page } from "../components/containers";
 import Navbar from "../components/Navbar";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const router = useRouter()
 
   async function handleSignUp() {
-    const res = await axios.post("/api/signup", form);
-    console.log(res);
+    try {
+      const res = await axios.post("/api/signup", form);
+      console.log(res);
+      loginUser();
+    } catch (error) {console.log(error)}
+  }
+
+  async function loginUser() {
+    try {
+      const res = await axios.post("/api/login", form);
+      if (res.status === 200) {
+        router.push('/')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
