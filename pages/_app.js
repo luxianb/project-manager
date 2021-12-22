@@ -1,8 +1,12 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {fas} from '@fortawesome/free-solid-svg-icons'
 import fetchJson from '../lib/fetchJson';
 import GlobalStyle from '../src/globalStyle';
 import '../styles/globals.css'
+
+library.add(fas)
 
 function MyApp({ Component, pageProps }) {
   return (
