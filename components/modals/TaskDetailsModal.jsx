@@ -28,7 +28,7 @@ export default function TaskDetailsModal(props) {
           value={state.name}
           onChange={handleChange}
         />
-        <FontAwesomeIcon icon='times' onClick={props.closeModal} style={{cursor: 'pointer'}}/>
+        <FontAwesomeIcon icon='times' onClick={props.closeModal} style={{cursor: 'pointer', height: '1rem'}}/>
       </Row>
         <select value={state.idList} onChange={(e) => setState({...state, idList: e.target.value})} style={{width: 'fit-content'}}>
           {props.lists.map((listItem) => (
