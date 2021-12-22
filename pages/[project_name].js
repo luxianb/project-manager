@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { fetchProjects } from '../util/apiFunctions';
-import { Content, Main, Page } from '../components/containers';
-import Navbar from '../components/Navbar';
-import { ProjectList } from '../components/cards';
-import CreateTaskModal from '../components/modals/CreateTaskModal';
 import axios from 'axios';
-import TaskDetailsModal from '../components/modals/TaskDetailsModal';
+import { useRouter } from 'next/router';
 
+import { ProjectList } from '../components/cards';
+import { Content, Main, Page } from '../components/containers';
+import CreateTaskModal from '../components/modals/CreateTaskModal';
+import TaskDetailsModal from '../components/modals/TaskDetailsModal';
+import Navbar from '../components/Navbar';
+
+import useUser from '../lib/useUser';
+import { fetchProjects } from '../util/apiFunctions';
 
 
 export default function ProjectDetailPage(props) {
@@ -15,6 +17,7 @@ export default function ProjectDetailPage(props) {
   const {project_name} = router.query;
   const [projectInfo, setProjectInfo] = useState({status: 'initial'})
   const [displayModal, setDisplayModal] = useState({type: '', listId: '', selectedCard: ''})
+  const { user } = useUser({ redirectTo: '/unauthorised' })
 
   useEffect(async() => {
     if(!router.isReady) return;

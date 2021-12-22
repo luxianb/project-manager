@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
   a { 
     cursor: pointer
   }
+  a.decorated {
+    text-decoration: underline;
+    color: #3d5afe;
+  }
 
   input, textarea, select {
     border-radius: 6px;
