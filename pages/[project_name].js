@@ -35,9 +35,8 @@ export default function ProjectDetailPage(props) {
   }
 
   function handleCardUpdate(updatedCard) {
-    const target = projectInfo.cards.indexOf((card) => card.id = updatedCard.id)
+    const target = projectInfo.cards.findIndex((card) => card.id === updatedCard.id)
     const updatedCards = [...projectInfo.cards];
-    console.log(target);
 
     updatedCards.splice(target, 1)
     setProjectInfo({...projectInfo, cards: [...updatedCards, updatedCard]})

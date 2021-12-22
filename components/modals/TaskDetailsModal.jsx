@@ -6,7 +6,6 @@ import { updateCard } from '../../util/apiFunctions'
 
 export default function TaskDetailsModal(props) {
   const [state, setState] = useState(props.cardInfo);
-  console.log(state);
 
   function handleChange(event) {
     const { id, value } = event.target;
@@ -16,7 +15,6 @@ export default function TaskDetailsModal(props) {
   async function handleUpdate() {
     const {name, desc, idList, id} = state;
     const updatedCard = await updateCard(id, {name, desc, idList});
-    console.log(updatedCard);
     props.onInfoUpdated(updatedCard);
   }
 
