@@ -34,7 +34,7 @@ export default function CreateTaskModal(props) {
   }
 
   return (
-    <Modal onBackClick={() => props.closeModal()}>
+    <Modal onBackClick={() => props.closeModal()} style={{gap: 12}}>
       <h3>Create task</h3>
       <input
         id="name"
@@ -51,9 +51,9 @@ export default function CreateTaskModal(props) {
       />
 
 
-      <Row style={{gap: '1rem'}}>  
-        <button onClick={() => props.closeModal()}>Back</button>
-        <button onClick={() => handleSubmit()}>Create</button>
+      <Row style={{gap: 6, justifyContent: 'flex-end'}}>  
+        <button onClick={() => props.closeModal()} className='secondary'>Back</button>
+        <button onClick={() => handleSubmit()} disabled={!form.name}>Create</button>
       </Row>
 
     </Modal>

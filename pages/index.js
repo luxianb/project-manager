@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
-import Image from 'next/image'
 import useUser from '../lib/useUser'
 import Navbar from '../src/layouts/Navbar'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 import { CreateProjectButton, ProjectCard } from '../src/components/cards';
 import axios from 'axios';
 import CreateProjectModal from '../src/components/modals/CreateProjectModal';

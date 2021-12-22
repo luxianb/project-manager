@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Modal = (props) => (
   <ModalBase onClick={props.onBackClick}>
-    <ModalCard onClick={(e) => e.stopPropagation()}>
+    <ModalCard onClick={(e) => e.stopPropagation()} {...props}>
       {props.children}
     </ModalCard>
   </ModalBase>
@@ -26,10 +26,12 @@ const ModalBase = styled.div`
 const ModalCard = styled.div`
   max-width: 300px;
   background-color: white;
-  border-radius: 6px;
-  padding: 6px;
+  border-radius: 12px;
+  padding: 12px;
   z-index: 11;
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
+
 `
 
