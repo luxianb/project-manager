@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Col, Page } from "../components/containers";
-import Navbar from "../components/layouts/Navbar";
+import Navbar from "../components/Navbar";
 
 export default function LogInPage() {
   const router = useRouter();
