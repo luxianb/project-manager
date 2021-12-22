@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import useUser from '../../../lib/useUser';
+import useUser from '../../lib/useUser';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 

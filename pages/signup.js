@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Col, Page } from "../src/components/containers";
-import Navbar from "../src/layouts/Navbar";
+import { Col, Page } from "../components/containers";
+import Navbar from "../components/Navbar";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({ email: "", password: "" });

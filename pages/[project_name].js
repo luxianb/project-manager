@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { fetchProjects } from '../src/util/apiFunctions';
-import { Content, Main, Page } from '../src/components/containers';
-import Navbar from '../src/layouts/Navbar';
-import { ProjectList } from '../src/components/cards';
-import CreateTaskModal from '../src/components/modals/CreateTaskModal';
+import { fetchProjects } from '../util/apiFunctions';
+import { Content, Main, Page } from '../components/containers';
+import Navbar from '../components/Navbar';
+import { ProjectList } from '../components/cards';
+import CreateTaskModal from '../components/modals/CreateTaskModal';
 import axios from 'axios';
-import TaskDetailsModal from '../src/components/modals/TaskDetailsModal';
+import TaskDetailsModal from '../components/modals/TaskDetailsModal';
 
 
 

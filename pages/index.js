@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
-import useUser from '../lib/useUser'
-import Navbar from '../src/layouts/Navbar'
+// import useUser from '../lib/useUser'
+import Navbar from '../components/Navbar'
 // import styles from '../styles/Home.module.css'
-import { CreateProjectButton, ProjectCard } from '../src/components/cards';
+import { CreateProjectButton, ProjectCard } from '../components/cards';
 import axios from 'axios';
-import CreateProjectModal from '../src/components/modals/CreateProjectModal';
-import { ProjectContainer } from '../src/components/containers';
+import CreateProjectModal from '../components/modals/CreateProjectModal';
+import { ProjectContainer } from '../components/containers';
 
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
   const [displayModal, setDisplayModal] = useState('')
-  const user = useUser()
+  // const user = useUser()
 
   useEffect(async () => {
     async function fetchProjects() {

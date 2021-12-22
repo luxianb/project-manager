@@ -1,6 +1,6 @@
 import dbConnect from "../../../lib/dbConnect";
 import Project from '../../../models/Project';
-import { createTrelloBoard } from "../../../src/util/apiFunctions";
+import { createTrelloBoard } from "../../../util/apiFunctions";
 
 export default async function handler(req, res) {
   const {method} = req;
